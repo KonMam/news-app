@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, render_template, request
 from sqlite import SQLite
 from db import init_db
 
@@ -15,7 +15,7 @@ app = create_app()
 
 @app.route("/")
 def hello_world():
-    return {"test": "yay"}
+    return render_template('index.html')
 
 
 @app.route("/articles", methods=["GET"])
@@ -40,36 +40,5 @@ def articles():
             )
             result = cur.fetchall()
             return jsonify(result)
-    except Exception as e:
-        return {"status": "failure", "error": e}
-
-
-@app.route("/create_article", methods=["POST"])
-def create_article():
-    try:
-        with SQLite('news.db') as cur:
-            data = request.json
-            if data:
-                cur.execute(
-                    'INSERT INTO articles (page, href, title) VALUES(?,?,?)',
-                    (data["page"], data["href"], data["title"])
-                )
-        return jsonify({"status": "success",
-                        "data": data})
-    except Exception as e:
-        return {"status": "failure", "error": e}
-
-
-@app.route("/delete_article/<id>", methods=["DELETE"])
-def delete_article(id):
-    try:
-        with SQLite('news.db') as cur:
-            cur.execute('SELECT * FROM articles WHERE id = ?', (id,))
-            result = cur.fetchall()
-            cur.execute(
-                'DELETE FROM articles WHERE id = ?', (id,)
-            )
-        return jsonify({"status": "success",
-                        "data": result})
     except Exception as e:
         return {"status": "failure", "error": e}

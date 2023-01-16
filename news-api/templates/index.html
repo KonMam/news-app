@@ -1,0 +1,50 @@
+<html>
+<head>
+  <title>Lithuanian News API</title>
+  <style>
+    /* Add dark styling */
+    body {
+      background-color: #222;
+      color: #f2f2f2;
+      font-family: sans-serif;
+      font-size: 150%;
+    }
+    h1, h2, p, code {
+      color: #f2f2f2;
+    }
+    a {
+      color: #ccc;
+    }
+    a:hover {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+	<h1>Lithuanian News API</h1>
+	<p>Welcome to the Lithuanian News API. Use this API to query news article details from Lithuanian news sites
+		like:</p>
+	<ul>
+		<li>https://vz.lt</li>
+		<li>https://delif.lt</li>
+		<li>https://15min.lt</li>
+	</ul>
+	<h2>Endpoints</h2>
+	<ul>
+		<li>/articles - Retrieve a list of all news articles</li>
+	</ul>
+	<h2>Query Parameters</h2>
+	<ul>
+		<li>title - filter articles by substring of the title</li>
+		<li>page - filter articles by a news page</li>
+	</ul>
+	<h2>Examples</h2>
+	<p>Retrieve a list of all articles:</p>
+	<code>GET /articles</code>
+	<p>Retrieve a list of articles with title containing 'Lietuva':</p>
+	<code>GET /articles?title=Lietuva</code>
+	<p>Retrieve articles with title containing 'Lietuva' from https://vz.lt:</p>
+	<code>GET /articles?title=Lithuania&page=vz</code>
+</body>
+
+</html>
