@@ -1,0 +1,1 @@
+*/2 * * * * python /app/news-scraper/main.py >> logs

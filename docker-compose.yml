@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  api:
+    build: ./news-api/
+    ports:
+      - '8000:5000'
+    volumes:
+      - '.:/app'
+    environment:
+      FLASK_DEBUG: True
+  scraper:
+    build: ./news-scraper/
+    volumes:
+      - '.:/app'
